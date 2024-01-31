@@ -1,0 +1,222 @@
+@import url(https://db.onlinewebfonts.com/c/58045dabdc3a361cb9bb9faf2f1dd1f3?family=Digital-7+V7);
+
+body {
+  background-color:#C2C2D6;
+  font-family: "Roboto Mono", monospace;
+}
+
+.global{
+  background-color:#000000;
+  margin: 0 auto;
+  width:25%;
+  height:386px;
+  padding:4px;
+  border:1px solid #47476B;
+  position: absolute;
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#clear:hover, #divide:hover, #multiply:hover, #seven:hover, #eight:hover, #nine:hover, #subtract:hover, #four:hover, #five:hover, #six:hover, #add:hover, #three:hover, #two:hover, #one:hover, #zero:hover, #decimal:hover, #equals:hover{
+   border:1px solid #fff;
+    color:black;
+}
+
+#display{
+  margin-top:10px;
+  display:block;
+  position:relative;
+  color:white;
+  text-align: right;
+  font-size:32px;
+  font-family: "Digital-7 V7";
+}
+.operaciones{
+  display:block;
+  color:#FFAE1A;
+  font-size:18px;
+  height:40%;
+}
+
+.orden1{
+  display:grid;
+   grid-template-columns: 2fr 1fr 1fr ;
+  grid-gap:1px;
+  margin:1px;
+}
+
+.orden2{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap:1px;
+  margin:1px;
+}
+
+.orden3{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap:1px;
+  margin:1px;
+}
+.orden4{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap:1px;
+  margin:1px;
+}
+
+.orden5{
+  display:grid;
+   grid-template-columns: 2fr 1fr 1fr;
+  grid-gap:1px;
+}
+
+#divide {
+  background-color:#666666;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:15px;
+}
+
+#multiply{
+  background-color:#666666;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:15px;
+}
+#subtract{
+  background-color:#666666;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:15px;
+}
+#add{
+  background-color:#666666;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:15px;
+}
+#one{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#two{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#three{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#four{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#five{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#six{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#seven{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#eight{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#nine{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+}
+#decimal{
+  background-color:#4D4D4D;
+  color:white;
+  display: flex;
+  justify-content: center;
+  font-size:21px;
+  padding:22px;
+  margin-left:0.1px;
+  margin-right:1px;
+}
+
+#equals{
+  background-color:#004466;
+  color:white;
+  width:33  px;
+  height:139%;
+  display: flex;
+  justify-content: center;/*centro eje x*/
+  font-size:21px;
+  padding:22px;
+  align-items:center;/*centro eje y*/
+}
+
+#clear{
+    background-color:#AC3939;
+    width:128.5px;
+    padding:14px;
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-size:21px;
+  }
+
+  #zero{
+    background-color:#4D4D4D;
+    color:white;
+    display: flex;
+    justify-content: center;
+    font-size:22px;
+    padding:22px;
+    width:112.5px;
+    margin-left:1px;
+  }
