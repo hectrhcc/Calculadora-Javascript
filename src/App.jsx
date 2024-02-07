@@ -77,11 +77,11 @@ this.handleClick = this.handleClick.bind(this);
               {this.state.inicio}</div>
             </div>    
             
-          <disv className="orden1">       
+          <div className="orden1">       
              <div id="clear"  onClick={() => this.handleClick('clear')}>AC</div>   
               <div id="divide"  onClick={() => this.handleClick('/')}>/</div>
               <div id="multiply"  onClick={() => this.handleClick('*')}>*</div>
-           </disv>
+           </div>
           <div className="orden2">
               <div id="seven" onClick={() => this.handleClick('7')}>7</div>
               <div id="eight" onClick={() => this.handleClick('8')}>8</div>
