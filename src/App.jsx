@@ -71,8 +71,9 @@ this.handleClick = this.handleClick.bind(this);
     return(
       <>
         <div className="global">
+           <div className="operaciones">{this.state.cadena}</div>
           <div id="display" >
-            <div className="operaciones">{this.state.cadena}</div><div className="entrada"> 
+           <div className="entrada"> 
               {this.state.inicio}</div>
             </div>    
             
