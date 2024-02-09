@@ -11,12 +11,27 @@ this.handleClick = this.handleClick.bind(this);
     
   handleClick(id){
     let cadena= this.state.cadena;
+    let inicio= this.state.inicio;
+    let lastChar = cadena[cadena.length-1];
+    let operadorRegex = /[+\-*/]/;
     
     switch (id) {
     case '/': 
     case '*':
     case '-':
     case '+': 
+        if( cadena.includes('=')) {
+    let i = 0;
+        while(i < cadena.length){
+              if(cadena[i] == '='){
+                  cadena = cadena.slice(i+1, cadena.length); 
+                console.log(cadena);
+               }
+              i++;
+             }
+          cadena+=id;
+        }else{cadena+=id; }
+        break;
     case '1':
     case '2':
     case '3':
@@ -26,38 +41,68 @@ this.handleClick = this.handleClick.bind(this);
     case '7':
     case '8':
     case '9':
+        if (lastChar === '0' && operadorRegex.test(cadena[cadena.length - 2])) {
+  cadena = cadena.replace(/0$/, id);
+}
+        else  if (lastChar === '.' && cadena[cadena.length - 2] ==='0' ) {
+  cadena+= id;
+}
+        else if(cadena[0]==='0' && cadena.length===1){
+     cadena = cadena.replace("0",id);
+          }else{
      cadena+=id;     
       //  let num= +id; //convertir a numero Pero ya no es necesario
+      }
       break;  
    
     case 'clear':
-     id=0;
-    cadena=' ';
+     inicio='0';
+   
+        id='0';
+    cadena='';
       break;
     case '=': 
+     
+     
       let resultado;
-       resultado = eval(cadena);
+       resultado = eval(cadena); //evaluar si la cadena solo tiene caracteres permitidos 
+       //resultado = parseFloat(resultado).toFixed(4)
       cadena+=id; //despues le coloque el =
+      //let quintoDecimal = parseInt((resultado * 10000) % 10);
+      //if(quintoDecimal >= 5) {
+    //postresultado = Math.ceil(resultado * 1000) / 1000; 
+  //}
       id=resultado;
       cadena+=resultado;
       break;    
     case '0'://pueden existir varios ceros juntos despues del punto 0.0001 pero no antes 000.01
         //si al anterior caracter es un 0 entonces no se ingresa a excepcion que el numero tenga un .
-     cadena+=id;
+        if(cadena[0]==='0'  && cadena.length===1){
+     ;
+          }
+        else if (lastChar === '0' && operadorRegex.test(cadena[cadena.length - 2])){
+          cadena = cadena.replace(/0$/, id);
+        }
+     else if (lastChar === '.' && cadena[cadena.length - 2] ==='0'){
+          cadena+=id; 
+        }
+        else{
+          cadena+=id;
+        }
      break;
     case '.': //pueden existir varios puntos en la cadena pero no contiguos
         if(cadena===''){//funciona a la primera pero no en las siguientes
           cadena='0.';
           id='0.';
         }
-        else if (cadena[cadena.length-1] ==='.') {//si el ultimo elemento es un . entonces no ingresa
-          
+      else if (lastChar ==='.' ) {//si el ultimo elemento es un . entonces no ingresa nada
+        ;  
         }
         else{
           cadena+=id;
         }
      break;
-  } 
+  }   
     this.setState(prevState => ({
     clicked: true,
     inicio:id,
