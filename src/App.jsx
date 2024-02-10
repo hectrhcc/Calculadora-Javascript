@@ -15,7 +15,8 @@ this.handleClick = this.handleClick.bind(this);
     let cadena= this.state.cadena;
     let inicio= this.state.inicio;
     let lastChar = cadena[cadena.length-1];
-    let operadorRegex = /[+\-*\/=]/; //   
+    let operadorRegex = /[+\-*\/=]/;  
+    let partefinal;
     switch (id) {
     case '/': 
     case '*':
@@ -78,7 +79,7 @@ this.handleClick = this.handleClick.bind(this);
      cadena = cadena.replace("0",id);
           }else{
      cadena+=id;     
-      //  let num= +id; //convertir a numero Pero ya no es necesario
+      //let num= +id; //convertir a numero Pero ya no es necesario
       }
       break;  
     case 'clear':
@@ -114,18 +115,22 @@ this.handleClick = this.handleClick.bind(this);
         }
      break;
     case '.': //pueden existir varios puntos en la cadena pero no contiguos
-        if(cadena===''){
-          cadena='0.';
-          id='0.';
-        }
-      else if (lastChar ==='.' ) {//si el ultimo elemento es un . entonces no ingresa nada
-        ;  
-        }
-        else{
-          cadena+=id;
+    
+       if (lastChar==='.'){//no ingresa .. seguidos
+       ;
+  
+      }else if(!operadorRegex.test(cadena) && cadena.includes('.')){//si la cadena no tiene operadores o sea es un numero y tiene ya un punto entonces no puede tener otro
+        ;
+      }else if(cadena.includes('.')) { //permite varios puntos en una cadena
+        cadena+='.'; 
+      }
+        else 
+      {
+     cadena+=id;    
         }
      break;
-  }       
+  }    
+    
 if(operadorRegex.test(id)) {// cuando id tiene operador
     this.setState(prevState => ({
     clicked: true,
@@ -135,8 +140,7 @@ if(operadorRegex.test(id)) {// cuando id tiene operador
   );
 }   else if(operadorRegex.test(cadena)){//cuando la cadena tiene algun operador crea una nueva cadena
     let nuevaCadena = cadena.split(operadorRegex);
-    let partefinal=nuevaCadena[nuevaCadena.length-1];//ultimos digitos en la cadena
-    console.log(partefinal);
+    partefinal=nuevaCadena[nuevaCadena.length-1];//ultimos digitos en la cadena
     this.setState(prevState => ({
     clicked: true,
     inicio:partefinal,
