@@ -13,8 +13,7 @@ this.handleClick = this.handleClick.bind(this);
     let cadena= this.state.cadena;
     let inicio= this.state.inicio;
     let lastChar = cadena[cadena.length-1];
-    let operadorRegex = /[+\-*/]/;
-    
+    let operadorRegex = /[+\-*\/=]/; //   
     switch (id) {
     case '/': 
     case '*':
@@ -30,7 +29,33 @@ this.handleClick = this.handleClick.bind(this);
               i++;
              }
           cadena+=id;
-        }else{cadena+=id; }
+        }   else if(lastChar==='*' && id!='-'){
+     cadena = cadena.replace("*",id);
+          }
+        
+        else if( lastChar==='/'  && id!='-'){
+          cadena = cadena.replace("/",id);
+        }
+         else if( lastChar==='+' && cadena.length===1){
+          cadena = cadena.replace("+",id);
+        }
+        else if( lastChar==='+'){
+          cadena = cadena.replace("+",id);
+        }
+         else if( lastChar==='-' && cadena.length===1){
+          cadena = cadena.replace("-",id);
+        }
+        
+         else if( lastChar==='-' && cadena[cadena.length-2]==='*'){
+          cadena = cadena.replace("*-",id);
+        }
+         else if( lastChar==='-' && cadena[cadena.length-2]==='/'){
+          cadena = cadena.replace("/-",id);
+        }
+         else if( lastChar==='-'){
+          cadena = cadena.replace("-",id);
+        }
+        else{cadena+=id; }
         break;
     case '1':
     case '2':
@@ -54,16 +79,12 @@ this.handleClick = this.handleClick.bind(this);
       //  let num= +id; //convertir a numero Pero ya no es necesario
       }
       break;  
-   
     case 'clear':
      inicio='0';
-   
         id='0';
-    cadena='';
+    cadena='0';
       break;
     case '=': 
-     
-     
       let resultado;
        resultado = eval(cadena); //evaluar si la cadena solo tiene caracteres permitidos 
        //resultado = parseFloat(resultado).toFixed(4)
@@ -91,7 +112,7 @@ this.handleClick = this.handleClick.bind(this);
         }
      break;
     case '.': //pueden existir varios puntos en la cadena pero no contiguos
-        if(cadena===''){//funciona a la primera pero no en las siguientes
+        if(cadena===''){
           cadena='0.';
           id='0.';
         }
@@ -102,17 +123,35 @@ this.handleClick = this.handleClick.bind(this);
           cadena+=id;
         }
      break;
-  }   
+  }       
+if(operadorRegex.test(id)) {// cuando id tiene operador
     this.setState(prevState => ({
     clicked: true,
     inicio:id,
     cadena:cadena 
     })
   );
-}
-  
+}   else if(operadorRegex.test(cadena)){//cuando la cadena tiene algun operador crea una nueva cadena
+    let nuevaCadena = cadena.split(operadorRegex);
+    let partefinal=nuevaCadena[nuevaCadena.length-1];//ultimos digitos en la cadena
+    console.log(partefinal);
+    this.setState(prevState => ({
+    clicked: true,
+    inicio:partefinal,
+    cadena:cadena 
+    })
+  );  
+    }
+else{//cuando id son numeros
+  this.setState(prevState => ({
+    clicked: true,
+    inicio:cadena,
+    cadena:cadena 
+    })
+  );
+}    
+} 
   render(){
-    
     return(
       <>
         <div className="global">
@@ -154,5 +193,4 @@ this.handleClick = this.handleClick.bind(this);
     );
   }
 }
-
 ReactDOM.render(<Calculadora />, document.getElementById('root'));
