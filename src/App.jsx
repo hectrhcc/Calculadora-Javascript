@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './Estilo.css'
 class Calculadora extends React.Component {
   constructor(props){
